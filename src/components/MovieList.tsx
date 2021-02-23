@@ -18,8 +18,7 @@ const Item = styled.li`
 const MovieList = () => {
   const { movies, fetchMovies, searchMovie } = useMovieList();
 
-  const handleSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = event.currentTarget.value;
+  const handleSearch = async (searchValue: string) => {
     if (searchValue.length !== 0) {
       searchMovie(searchValue);
     } else {

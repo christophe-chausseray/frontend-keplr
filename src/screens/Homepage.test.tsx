@@ -23,10 +23,28 @@ describe('Homepage', () => {
     render(<Homepage />);
 
     const searchInput = screen.getByRole('textbox', { name: /SearchBar/ });
-    userEvent.type(searchInput, 'red dot');
+    userEvent.type(searchInput, 'Superman: Red Son');
 
     await waitFor(() => {
-      expect(screen.getAllByRole('listitem').length).toEqual(2);
+      expect(screen.getAllByRole('listitem').length).toEqual(1);
     });
   });
+
+  test('remove search value when clicking on a clear button', async () => {
+    render(<Homepage />);
+
+    const searchInput = screen.getByRole('textbox', { name: /SearchBar/ });
+    userEvent.type(searchInput, 'Superman: Red Son');
+
+    await waitFor(() => {
+      expect(screen.getAllByRole('listitem').length).toEqual(1);
+    });
+
+    const clearSearchButton = screen.getByRole('button', { name: /ClearSearchButton/ });
+    userEvent.click(clearSearchButton);
+
+    await waitFor(() => {
+      expect(screen.getAllByRole('listitem').length).toEqual(20);
+    });
+  })
 })
