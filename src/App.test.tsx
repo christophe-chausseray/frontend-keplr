@@ -1,9 +1,20 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
+import userEvent from '@testing-library/user-event';
 
-test.skip('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('App', () => {
+  test('navigate between the homepage and the details page', async () => {
+    render(<App />);
+
+    await waitFor(() => {
+      userEvent.click(screen.getByAltText('Red Dot'));
+
+      expect(screen.getByText('Red Dot')).toBeInTheDocument();
+
+      userEvent.click(screen.getByRole('img', { name: 'Back' }));
+
+      expect(screen.getByRole('textbox', { name: /SearchBar/ })).toBeInTheDocument();
+    });
+  })
 });

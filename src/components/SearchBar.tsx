@@ -9,7 +9,7 @@ const SearchStyled = styled.div`
 `;
 
 const InputStyled = styled.input`
-  width: 97%;
+  width: 95%;
   border: none;
   height: 100%;
 

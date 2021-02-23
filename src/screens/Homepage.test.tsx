@@ -1,29 +1,31 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Homepage from './Homepage';
+import { renderWithRouter } from '../utilsTest';
 
 
 describe('Homepage', () => {
   test('display the header on the homepage', () => {
-    render(<Homepage />);
+    renderWithRouter(<Homepage />);
 
     expect(screen.getByRole('heading', { name: /Movies/ })).toBeInTheDocument();
   });
 
   test('render a list of movies', async () => {
-    render(<Homepage />);
+    renderWithRouter(<Homepage />);
 
     await waitFor(() => {
       expect(screen.getByRole('list', { name: /MovieList/ })).toBeInTheDocument();
+      expect(screen.getAllByRole('listitem').length).toEqual(3);
     })
   });
 
   test('search on the list of movies', async () => {
-    render(<Homepage />);
+    renderWithRouter(<Homepage />);
 
     const searchInput = screen.getByRole('textbox', { name: /SearchBar/ });
-    userEvent.type(searchInput, 'Superman: Red Son');
+    userEvent.type(searchInput, 'Red Dot');
 
     await waitFor(() => {
       expect(screen.getAllByRole('listitem').length).toEqual(1);
@@ -31,10 +33,10 @@ describe('Homepage', () => {
   });
 
   test('remove search value when clicking on a clear button', async () => {
-    render(<Homepage />);
+    renderWithRouter(<Homepage />);
 
     const searchInput = screen.getByRole('textbox', { name: /SearchBar/ });
-    userEvent.type(searchInput, 'Superman: Red Son');
+    userEvent.type(searchInput, 'Red Dot');
 
     await waitFor(() => {
       expect(screen.getAllByRole('listitem').length).toEqual(1);
@@ -44,7 +46,7 @@ describe('Homepage', () => {
     userEvent.click(clearSearchButton);
 
     await waitFor(() => {
-      expect(screen.getAllByRole('listitem').length).toEqual(20);
+      expect(screen.getAllByRole('listitem').length).toEqual(3);
     });
   })
 })
