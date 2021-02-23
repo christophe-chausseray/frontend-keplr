@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Movie from '../model/movie';
+import useMovieList from '../hooks/useMovieList';
 import SearchBar from './SearchBar';
 
 const List = styled.ul`
@@ -16,33 +16,12 @@ const Item = styled.li`
 `;
 
 const MovieList = () => {
-  const [isMounted, setIsMounted] = React.useState(true);
-  const [movies, setMovies] = React.useState<Movie[] | null>(null);
-
-  const fetchMovies = React.useCallback(async () => {
-    const response = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=5dcff845c097b0973ebee6ea9eb9eaef');
-    const moviesFromResponse = await response.json();
-
-    if (isMounted) {
-      setMovies(moviesFromResponse.results);
-    }
-  }, [isMounted]);
-
-  React.useEffect(() => {
-    fetchMovies();
-
-    return () => {
-      setIsMounted(false);
-    }
-  }, [fetchMovies]);
+  const { movies, fetchMovies, searchMovie } = useMovieList();
 
   const handleSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchValue = event.currentTarget.value;
     if (searchValue.length !== 0) {
-      const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=5dcff845c097b0973ebee6ea9eb9eaef&query=${searchValue}`);
-      const moviesFromResponse = await response.json();
-
-      setMovies(moviesFromResponse.results);
+      searchMovie(searchValue);
     } else {
       fetchMovies();
     }
