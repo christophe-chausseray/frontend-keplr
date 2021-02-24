@@ -1,18 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
 import Header from '../components/Header';
 import MovieList from '../components/MovieList';
+import Container from '../components/Container';
 
-const Container = styled.section`
-  max-height: 100vh;
-  overflow-y: scroll;
-`;
 
 const Homepage = () => {
   return (
     <>
       <Header />
-      <Container aria-label='main'>
+      <Container>
         <MovieList />
       </Container>
     </>

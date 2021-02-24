@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Movie from './../model/movie';
+import Movie from '../model/movie';
 
 const useMovieDetails = (movieId: string): Movie | null => {
   const [movie, setMovie] = useState<Movie| null>(null);

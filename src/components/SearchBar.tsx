@@ -6,6 +6,7 @@ const SearchStyled = styled.div`
   width: 48%;
   border: 1px solid lightgray;
   padding: 10px;
+  background-color: #fff;
 `;
 
 const InputStyled = styled.input`
