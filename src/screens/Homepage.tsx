@@ -8,7 +8,7 @@ const Homepage = () => {
   return (
     <>
       <Header />
-      <Container>
+      <Container isScrollable={true}>
         <MovieList />
       </Container>
     </>

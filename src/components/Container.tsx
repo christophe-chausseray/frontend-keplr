@@ -1,21 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CustomThemedProps } from '../themes';
 
 const StyledContainer = styled.section`
   height: 100vh;
-  overflow-y: scroll;
-  background-color: ${({theme}: CustomThemedProps) => theme.background};
-  padding-top: 10px;
+  background-color: ${(props) => props.theme.background};
+  padding-top: 20px;
+
+  ${(props: { isScrollable: boolean }) => {
+    if (props.isScrollable) {
+      return `
+        overflow-y: scroll;
+      `;
+    }
+  }}
 `;
 
 type ContainerProps = {
+  isScrollable?: boolean;
   children: React.ReactElement;
 }
 
-const Container  = ({ children }: ContainerProps) => {
+const Container  = ({ isScrollable = false, children }: ContainerProps) => {
   return (
-    <StyledContainer aria-label='main'>
+    <StyledContainer aria-label='main' isScrollable={isScrollable}>
       {children}
     </StyledContainer>
   )

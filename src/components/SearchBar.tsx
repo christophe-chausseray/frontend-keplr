@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const SearchStyled = styled.div`
   margin: 0 25% 1% 25%;
-  width: 48%;
+  width: 50%;
   border: 1px solid lightgray;
   padding: 10px;
   background-color: #fff;
