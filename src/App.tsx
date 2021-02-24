@@ -1,8 +1,11 @@
 import React from 'react';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Homepage from './screens/Homepage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import DetailsPage from './screens/DetailsPage';
+import useTheme from './hooks/useTheme';
+import { lightTheme, darkTheme } from './themes';
+import ToggleThemeContext from './context/toggleThemeContext';
 
 const GlobalStyle = createGlobalStyle`
  html {
@@ -31,16 +34,21 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const { theme, toggleTheme } = useTheme();
+  const themeMode = 'light' === theme ? lightTheme : darkTheme;
+
   return (
-    <>
-      <GlobalStyle />
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Homepage} />
-          <Route path='/details/:movieId' component={DetailsPage} />
-        </Switch>
-      </Router>
-    </>
+    <ThemeProvider theme={themeMode}>
+      <ToggleThemeContext.Provider value={{theme, toggleTheme}}>
+        <GlobalStyle />
+        <Router>
+          <Switch>
+            <Route exact path='/' component={Homepage} />
+            <Route path='/details/:movieId' component={DetailsPage} />
+          </Switch>
+        </Router>
+      </ToggleThemeContext.Provider>
+    </ThemeProvider>
   );
 }
 
