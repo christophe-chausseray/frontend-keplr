@@ -37,10 +37,9 @@ function App() {
   const { theme, toggleTheme } = useTheme();
   const themeMode = 'light' === theme ? lightTheme : darkTheme;
 
-  console.log(theme, themeMode);
   return (
     <ThemeProvider theme={themeMode}>
-      <ToggleThemeContext.Provider value={toggleTheme}>
+      <ToggleThemeContext.Provider value={{theme, toggleTheme}}>
         <GlobalStyle />
         <Router>
           <Switch>

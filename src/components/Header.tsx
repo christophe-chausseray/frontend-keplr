@@ -74,11 +74,12 @@ const ToggleInput = styled.input`
 `;
 
 const ToggleTheme = () => {
-  const toggleTheme = React.useContext(ToggleThemeContext);
+  const { theme, toggleTheme } = React.useContext(ToggleThemeContext);
+  const isChecked = ('dark' === theme) ? true : false;
 
   return (
     <ToggleWrapper>
-      <ToggleInput type="checkbox" id="switch" onClick={() => toggleTheme()} />
+      <ToggleInput type="checkbox" id="switch" onClick={() => toggleTheme()} checked={isChecked} />
       <ToggleLabel htmlFor="switch" />
     </ToggleWrapper>
   )
