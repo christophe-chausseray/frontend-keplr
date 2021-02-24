@@ -48,5 +48,15 @@ describe('Homepage', () => {
     await waitFor(() => {
       expect(screen.getAllByRole('listitem').length).toEqual(3);
     });
-  })
+  });
+
+  test('display the movie title on the item hover', async () => {
+    renderWithRouter(<Homepage />);
+
+    await waitFor(() => {
+      userEvent.hover(screen.getByRole('listitem', { name: /Red Dot/ }));
+
+      expect(screen.getByText('Red Dot')).toBeInTheDocument();
+    });
+  });
 })

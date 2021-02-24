@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import useMovieList from '../hooks/useMovieList';
 import SearchBar from './SearchBar';
+import Movie from './../model/movie';
 
 const List = styled.ul`
   display: flex;
@@ -14,6 +15,21 @@ const List = styled.ul`
 
 const Item = styled.li`
   padding-right: 10px;
+  position: relative;
+`;
+
+const Title = styled.p`
+  display: block;
+  position: absolute;
+  top: 200px;
+  background-color: #ddd;
+  color: black;
+  text-align: center;
+  line-height: 50px;
+  font-size: 24px;
+  opacity: 0.9;
+  width: 95%;
+  height: 60px;
 `;
 
 const MovieList = () => {
@@ -34,11 +50,7 @@ const MovieList = () => {
         <List aria-label="MovieList">
           {movies.map((movie) => {
             return movie.poster_path ?
-              <Item aria-label={movie.title} key={movie.id}>
-                <Link to={'/details/' + movie.id}>
-                  <img src={'http://image.tmdb.org/t/p/w185' + movie.poster_path} alt={movie.title} />
-                </Link>
-              </Item>
+              <MovieItem movie={movie} key={movie.id} />
             : null
           })}
         </List>
@@ -47,6 +59,31 @@ const MovieList = () => {
       )}
 
     </>
+  );
+}
+
+const MovieItem = ({ movie }: { movie: Movie }) => {
+  const [displayTitle, setDisplayTitle] = React.useState(false);
+
+  const showTitle = () => {
+    setDisplayTitle(true);
+  }
+
+  const hideTitle = () => {
+    setDisplayTitle(false);
+  }
+
+  return (
+    <Item aria-label={movie.title} onMouseEnter={showTitle} onMouseLeave={hideTitle}>
+      <Link to={'/details/' + movie.id}>
+        <img src={'http://image.tmdb.org/t/p/w185' + movie.poster_path} alt={movie.title} />
+        {displayTitle && (
+          <Title>
+            {movie.title}
+          </Title>
+        )}
+      </Link>
+    </Item>
   );
 }
 
