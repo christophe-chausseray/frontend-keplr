@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import useMovieList from '../hooks/useMovieList';
 import SearchBar from './SearchBar';
@@ -34,7 +35,9 @@ const MovieList = () => {
           {movies.map((movie) => {
             return movie.poster_path ?
               <Item aria-label={movie.title} key={movie.id}>
-                <img src={'http://image.tmdb.org/t/p/w185' + movie.poster_path} alt={movie.title} />
+                <Link to={'/details/' + movie.id}>
+                  <img src={'http://image.tmdb.org/t/p/w185' + movie.poster_path} alt={movie.title} />
+                </Link>
               </Item>
             : null
           })}

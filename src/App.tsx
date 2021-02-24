@@ -1,6 +1,8 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Homepage from './screens/Homepage';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import DetailsPage from './screens/DetailsPage';
 
 const GlobalStyle = createGlobalStyle`
  html {
@@ -32,7 +34,12 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Homepage />
+      <Router>
+        <Switch>
+          <Route exact path='/' component={Homepage} />
+          <Route path='/details/:movieId' component={DetailsPage} />
+        </Switch>
+      </Router>
     </>
   );
 }
