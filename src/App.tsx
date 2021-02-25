@@ -1,7 +1,7 @@
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import Homepage from './screens/Movie/List/Homepage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import ListPage from './screens/Movie/List/ListPage';
 import DetailsPage from './screens/Movie/Details/DetailsPage';
 import useTheme from './hooks/useTheme';
 import { lightTheme, darkTheme } from './themes';
@@ -43,7 +43,7 @@ function App() {
         <GlobalStyle />
         <Router>
           <Switch>
-            <Route exact path='/' component={Homepage} />
+            <Route exact path='/' component={ListPage} />
             <Route path='/details/:movieId' component={DetailsPage} />
           </Switch>
         </Router>

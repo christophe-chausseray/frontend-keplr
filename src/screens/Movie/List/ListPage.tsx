@@ -3,8 +3,7 @@ import Header from '../../../components/Header';
 import MovieList from './components/MovieList';
 import Container from '../../../components/Container';
 
-
-const Homepage = () => {
+const ListPage = () => {
   return (
     <>
       <Header />
@@ -15,4 +14,4 @@ const Homepage = () => {
   );
 }
 
-export default Homepage;
+export default ListPage;
