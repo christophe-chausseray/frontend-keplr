@@ -5,7 +5,7 @@ import ListPage from './screens/Movie/List/ListPage';
 import DetailsPage from './screens/Movie/Details/DetailsPage';
 import useTheme from './hooks/useTheme';
 import { lightTheme, darkTheme } from './themes';
-import { ToggleThemeProvider } from './context/ToggleThemeContext';
+import { ToggleThemeProvider } from './contexts/ToggleThemeContext';
 
 const GlobalStyle = createGlobalStyle`
  html {

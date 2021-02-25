@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import useMovieList from '../hooks/useMovieList';
 import SearchBar from '../../../../components/SearchBar';
-import Movie from '../../../../model/movie';
+import Movie from '../../../../models/movie';
 import Loader from '../../../../components/Loader';
 
 const List = styled.ul`
