@@ -1,8 +1,8 @@
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import Homepage from './screens/Homepage';
+import Homepage from './screens/Movie/List/Homepage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import DetailsPage from './screens/DetailsPage';
+import DetailsPage from './screens/Movie/Details/DetailsPage';
 import useTheme from './hooks/useTheme';
 import { lightTheme, darkTheme } from './themes';
 import { ToggleThemeProvider } from './context/ToggleThemeContext';

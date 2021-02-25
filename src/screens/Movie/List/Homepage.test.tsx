@@ -2,7 +2,7 @@ import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Homepage from './Homepage';
-import { renderWithRouter } from '../utilsTest';
+import { renderWithRouter } from '../../../utilsTest';
 
 
 describe('Homepage', () => {
