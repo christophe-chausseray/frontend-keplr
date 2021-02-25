@@ -24,8 +24,12 @@ describe('Homepage', () => {
   test('search on the list of movies', async () => {
     renderWithRouter(<Homepage />);
 
-    const searchInput = screen.getByRole('textbox', { name: /SearchBar/ });
-    userEvent.type(searchInput, 'Red Dot');
+    await waitFor(() => {
+      expect(screen.getAllByRole('listitem').length).toEqual(3);
+
+      const searchInput = screen.getByRole('textbox', { name: /SearchBar/ });
+      userEvent.type(searchInput, 'Red Dot');
+    });
 
     await waitFor(() => {
       expect(screen.getAllByRole('listitem').length).toEqual(1);
@@ -35,15 +39,17 @@ describe('Homepage', () => {
   test('remove search value when clicking on a clear button', async () => {
     renderWithRouter(<Homepage />);
 
-    const searchInput = screen.getByRole('textbox', { name: /SearchBar/ });
-    userEvent.type(searchInput, 'Red Dot');
+    await waitFor(async () => {
+      const searchInput = screen.getByRole('textbox', { name: /SearchBar/ });
+      userEvent.type(searchInput, 'Red Dot');
+    });
 
     await waitFor(() => {
       expect(screen.getAllByRole('listitem').length).toEqual(1);
-    });
 
-    const clearSearchButton = screen.getByRole('button', { name: /ClearSearchButton/ });
-    userEvent.click(clearSearchButton);
+      const clearSearchButton = screen.getByRole('button', { name: /ClearSearchButton/ });
+      userEvent.click(clearSearchButton);
+    });
 
     await waitFor(() => {
       expect(screen.getAllByRole('listitem').length).toEqual(3);
@@ -58,5 +64,11 @@ describe('Homepage', () => {
 
       expect(screen.getByText('Red Dot')).toBeInTheDocument();
     });
+  });
+
+  test('display a loader when the list is loading', async () => {
+    renderWithRouter(<Homepage />);
+
+    expect(screen.getByTitle('Loader')).toBeInTheDocument();
   });
 })

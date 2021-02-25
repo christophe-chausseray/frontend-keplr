@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import useMovieDetails from './../hooks/useMovieDetails';
 import { CustomThemedProps } from './../themes';
+import Loader from './Loader';
 
 const Container = styled.div`
   display: flex;
@@ -32,16 +33,27 @@ const ImageStyled = styled.img`
   }
 `;
 
+const NoFound = styled.p`
+  text-align: center;
+  font-size: 20px;
+`;
+
 type MovieDetailsProps = {
   movieId: string;
 }
 
 const MovieDetails = ({ movieId }: MovieDetailsProps) => {
-  const movie = useMovieDetails(movieId);
+  const { movie, isLoading } = useMovieDetails(movieId);
+
+  if (isLoading) {
+    return (
+      <Loader title="Loader" />
+    );
+  }
 
   if (!movie) {
     return (
-      <p>No movie found for this Id !</p>
+      <NoFound>Impossible to load a movie !</NoFound>
     );
   }
 

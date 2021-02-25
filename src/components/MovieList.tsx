@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import useMovieList from '../hooks/useMovieList';
 import SearchBar from './SearchBar';
 import Movie from './../model/movie';
+import Loader from './Loader';
 
 const List = styled.ul`
   display: flex;
@@ -56,8 +57,19 @@ const Title = styled.p`
   height: 60px;
 `;
 
+const NoFound = styled.p`
+  text-align: center;
+  font-size: 20px;
+`;
+
 const MovieList = () => {
-  const { movies, fetchMovies, searchMovie } = useMovieList();
+  const { movies, isLoading,fetchMovies, searchMovie } = useMovieList();
+
+  if (isLoading) {
+    return (
+      <Loader title="Loader" />
+    );
+  }
 
   return (
     <>
@@ -71,9 +83,8 @@ const MovieList = () => {
           })}
         </List>
       ) : (
-        <p>No movies found !</p>
+        <NoFound>No movies found !</NoFound>
       )}
-
     </>
   );
 }

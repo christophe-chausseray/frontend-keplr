@@ -57,7 +57,13 @@ const SearchBar = ({ onSearch, onClearValue }: SearchBarProps) => {
   const [searchValue, setSearchValue] = React.useState('');
 
   const doSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onSearch(event.currentTarget.value);
+    // Handle the case when we clear the seach bar manually
+    if (event.currentTarget.value.length === 0 && onClearValue) {
+      onClearValue();
+    } else {
+      onSearch(event.currentTarget.value);
+    }
+
     setSearchValue(event.currentTarget.value);
   };
 

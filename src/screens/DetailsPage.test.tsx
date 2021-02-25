@@ -13,5 +13,11 @@ describe('DetailsPage', () => {
       expect(screen.getByText('7.8 / 10')).toBeInTheDocument();
       expect(screen.getByRole('img', { name: /Red Dot/ }).getAttribute('src')).toContain('xZ2KER2gOHbuHP2GJoODuXDSZCb.jpg');
     });
-  })
+  });
+
+  test('display a loader when the detail is loading', () => {
+    renderWithRouter(<DetailsPage />, { route: '/details/1', path: '/details/:movieId' });
+
+    expect(screen.getByTitle('Loader')).toBeInTheDocument();
+  });
 });
