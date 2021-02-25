@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
   body {
-    font-family: ui-sans-serif;
+    font-family: Roboto, "Material Icons";
   }
   ul {
     display: block;
