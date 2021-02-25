@@ -41,20 +41,21 @@ const Item = styled.li`
 
 const ImageStyled = styled.img`
   width: 100%;
+  height: 245px;
 `;
 
 const Title = styled.p`
   display: block;
   position: absolute;
-  top: 200px;
+  top: -25px;
   background-color: #ddd;
   color: black;
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
   font-size: 24px;
-  opacity: 0.9;
-  width: 95%;
-  height: 60px;
+  opacity: 0.8;
+  width: 96%;
+  height: 246px;
 `;
 
 const NoFound = styled.p`
