@@ -56,19 +56,21 @@ const SearchBar = ({ handleSearch }: SearchBarProps) => {
   const [searchValue, setSearchValue] = React.useState('');
 
   const makeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleSearch(event.currentTarget.value);
     setSearchValue(event.currentTarget.value);
-    handleSearch(searchValue);
   };
 
   const clearSearch = () => {
+    handleSearch('');
     setSearchValue('');
-    handleSearch(searchValue);
   }
 
   return (
     <SearchStyled>
       <InputStyled aria-label="SearchBar" placeholder="Recherche un film" onChange={makeSearch} value={searchValue} />
-      <ClearSearchButton aria-label="ClearSearchButton" onClick={clearSearch}>X</ClearSearchButton>
+      {searchValue.length !== 0 && (
+        <ClearSearchButton aria-label="ClearSearchButton" onClick={clearSearch}>X</ClearSearchButton>
+      )}
     </SearchStyled>
   );
 };
