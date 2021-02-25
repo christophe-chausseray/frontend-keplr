@@ -18,14 +18,14 @@ const StyledContainer = styled.section`
 type ContainerProps = {
   isScrollable?: boolean;
   children: React.ReactElement;
-}
+};
 
-const Container  = ({ isScrollable = false, children }: ContainerProps) => {
+const Container = ({ isScrollable = false, children }: ContainerProps) => {
   return (
-    <StyledContainer aria-label='main' isScrollable={isScrollable}>
+    <StyledContainer aria-label="main" isScrollable={isScrollable}>
       {children}
     </StyledContainer>
-  )
-}
+  );
+};
 
 export default Container;

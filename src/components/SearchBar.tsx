@@ -73,13 +73,15 @@ const SearchBar = ({ onSearch, onClearValue }: SearchBarProps) => {
     }
 
     setSearchValue('');
-  }
+  };
 
   return (
     <SearchStyled>
       <InputStyled aria-label="SearchBar" placeholder="Recherche un film" onChange={doSearch} value={searchValue} />
       {searchValue.length !== 0 && (
-        <ClearSearchButton aria-label="ClearSearchButton" onClick={clearValue}>X</ClearSearchButton>
+        <ClearSearchButton aria-label="ClearSearchButton" onClick={clearValue}>
+          X
+        </ClearSearchButton>
       )}
     </SearchStyled>
   );

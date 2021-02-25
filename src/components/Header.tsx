@@ -6,7 +6,7 @@ import { CustomThemedProps } from './../themes';
 import ToggleTheme from './ToggleTheme';
 
 const Container = styled.header`
-  background-color: ${({theme}: CustomThemedProps) => theme.header};
+  background-color: ${({ theme }: CustomThemedProps) => theme.header};
   color: #fff;
   text-align: center;
   padding: 10px 0;
@@ -29,8 +29,8 @@ const Header = () => {
   return (
     <Container>
       {location.pathname !== '/' && (
-        <Link to='/' role="img" aria-label="Back">
-          <BackIcon  />
+        <Link to="/" role="img" aria-label="Back">
+          <BackIcon />
         </Link>
       )}
       <Title>Movies</Title>

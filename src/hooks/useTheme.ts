@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useTheme = (): { theme: string, toggleTheme: () => void } => {
+const useTheme = (): { theme: string; toggleTheme: () => void } => {
   const [theme, setTheme] = useState('light');
 
   const toggleTheme = () => {
@@ -11,7 +11,7 @@ const useTheme = (): { theme: string, toggleTheme: () => void } => {
       localStorage.setItem('currentTheme', 'light');
       setTheme('light');
     }
-  }
+  };
 
   useEffect(() => {
     const localTheme = localStorage.getItem('currentTheme');
@@ -24,7 +24,7 @@ const useTheme = (): { theme: string, toggleTheme: () => void } => {
     }
   }, []);
 
-  return { theme, toggleTheme }
-}
+  return { theme, toggleTheme };
+};
 
 export default useTheme;

@@ -21,7 +21,7 @@ const Loader = styled(Spinner3)`
   margin-top: 10%;
   margin-left: auto;
   margin-right: auto;
-  color: ${({theme}: CustomThemedProps) => theme.header};
+  color: ${({ theme }: CustomThemedProps) => theme.header};
   animation: ${loadingAnimation};
 `;
 
