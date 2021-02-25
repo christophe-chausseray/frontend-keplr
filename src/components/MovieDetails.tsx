@@ -33,6 +33,11 @@ const ImageStyled = styled.img`
   }
 `;
 
+const NoFound = styled.p`
+  text-align: center;
+  font-size: 20px;
+`;
+
 type MovieDetailsProps = {
   movieId: string;
 }
@@ -45,9 +50,10 @@ const MovieDetails = ({ movieId }: MovieDetailsProps) => {
       <Loader title="Loader" />
     );
   }
+
   if (!movie) {
     return (
-      <p>No movie found for this Id !</p>
+      <NoFound>Impossible to load a movie !</NoFound>
     );
   }
 

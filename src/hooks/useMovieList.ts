@@ -11,7 +11,10 @@ const useMovieList = (): { movies: Movie[]|null, isLoading: boolean, fetchMovies
     const moviesFromResponse = await response.json();
 
     if (isMounted) {
-      setMovies(moviesFromResponse.results);
+      if (moviesFromResponse.results.length !== 0) {
+        setMovies(moviesFromResponse.results);
+      }
+
       setIsLoading(false);
     }
   }, [isMounted]);
@@ -20,7 +23,11 @@ const useMovieList = (): { movies: Movie[]|null, isLoading: boolean, fetchMovies
     const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=5dcff845c097b0973ebee6ea9eb9eaef&query=${searchValue}`);
     const moviesFromResponse = await response.json();
 
-    setMovies(moviesFromResponse.results);
+    if (moviesFromResponse.results.length === 0) {
+      setMovies(null);
+    } else {
+      setMovies(moviesFromResponse.results);
+    }
   }
 
   useEffect(() => {

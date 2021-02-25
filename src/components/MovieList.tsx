@@ -57,6 +57,11 @@ const Title = styled.p`
   height: 60px;
 `;
 
+const NoFound = styled.p`
+  text-align: center;
+  font-size: 20px;
+`;
+
 const MovieList = () => {
   const { movies, isLoading,fetchMovies, searchMovie } = useMovieList();
 
@@ -78,7 +83,7 @@ const MovieList = () => {
           })}
         </List>
       ) : (
-        <p>No movies found !</p>
+        <NoFound>No movies found !</NoFound>
       )}
     </>
   );

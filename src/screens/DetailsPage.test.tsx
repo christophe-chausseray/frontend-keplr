@@ -19,5 +19,5 @@ describe('DetailsPage', () => {
     renderWithRouter(<DetailsPage />, { route: '/details/1', path: '/details/:movieId' });
 
     expect(screen.getByTitle('Loader')).toBeInTheDocument();
-  })
+  });
 });
