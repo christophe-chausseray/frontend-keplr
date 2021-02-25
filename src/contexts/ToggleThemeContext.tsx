@@ -17,6 +17,8 @@ const useToggleThemeContext = () => {
   return toggleThemeContext;
 };
 
-const ToggleThemeProvider = ({theme, toggleTheme, children}: ToggleThemeProps) => (<ToggleThemeContext.Provider value={{theme, toggleTheme}}>{children}</ToggleThemeContext.Provider>);
+const ToggleThemeProvider = ({ theme, toggleTheme, children }: ToggleThemeProps) => (
+  <ToggleThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ToggleThemeContext.Provider>
+);
 
 export { useToggleThemeContext, ToggleThemeProvider };

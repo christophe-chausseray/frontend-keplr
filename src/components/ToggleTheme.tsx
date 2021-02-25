@@ -8,13 +8,13 @@ const ToggleWrapper = styled.div`
 
 const ToggleLabel = styled.label`
   cursor: pointer;
-	width: 40px;
+  width: 40px;
   height: 20px;
   position: absolute;
   top: 0;
   right: 40px;
-	border-radius: 15px;
-	background-color: #bebebe;
+  border-radius: 15px;
+  background-color: #bebebe;
   margin-top: 10px;
 
   &::after {
@@ -33,7 +33,7 @@ const ToggleLabel = styled.label`
 const ToggleInput = styled.input`
   width: 40px;
   height: 20px;
-	opacity: 0;
+  opacity: 0;
   z-index: 1;
   border-radius: 15px;
 
@@ -54,14 +54,21 @@ const ToggleInput = styled.input`
 
 const ToggleTheme = () => {
   const { theme, toggleTheme } = useToggleThemeContext();
-  const isChecked = ('dark' === theme) ? true : false;
+  const isChecked = 'dark' === theme ? true : false;
 
   return (
     <ToggleWrapper>
-      <ToggleInput type="checkbox" aria-label="ToggleTheme" id="switch" onClick={() => toggleTheme()} checked={isChecked} readOnly />
+      <ToggleInput
+        type="checkbox"
+        aria-label="ToggleTheme"
+        id="switch"
+        onClick={() => toggleTheme()}
+        checked={isChecked}
+        readOnly
+      />
       <ToggleLabel htmlFor="switch" />
     </ToggleWrapper>
-  )
+  );
 };
 
 export default ToggleTheme;
