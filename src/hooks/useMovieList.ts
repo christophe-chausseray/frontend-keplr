@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import Movie from '../model/movie';
 
-const useMovieList = (): { movies: Movie[]|null, fetchMovies: () => void, searchMovie: (searchValue: string) => void } => {
+const useMovieList = (): { movies: Movie[]|null, isLoading: boolean, fetchMovies: () => void, searchMovie: (searchValue: string) => void } => {
   const [isMounted, setIsMounted] = useState(true);
   const [movies, setMovies] = useState<Movie[] | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchMovies = useCallback(async () => {
     const response = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=5dcff845c097b0973ebee6ea9eb9eaef');
@@ -11,6 +12,7 @@ const useMovieList = (): { movies: Movie[]|null, fetchMovies: () => void, search
 
     if (isMounted) {
       setMovies(moviesFromResponse.results);
+      setIsLoading(false);
     }
   }, [isMounted]);
 
@@ -29,7 +31,7 @@ const useMovieList = (): { movies: Movie[]|null, fetchMovies: () => void, search
     }
   }, [fetchMovies]);
 
-  return { movies, fetchMovies, searchMovie };
+  return { movies, isLoading, fetchMovies, searchMovie };
 };
 
 export default useMovieList;

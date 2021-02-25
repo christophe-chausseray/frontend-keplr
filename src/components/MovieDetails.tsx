@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import useMovieDetails from './../hooks/useMovieDetails';
 import { CustomThemedProps } from './../themes';
+import Loader from './Loader';
 
 const Container = styled.div`
   display: flex;
@@ -37,8 +38,13 @@ type MovieDetailsProps = {
 }
 
 const MovieDetails = ({ movieId }: MovieDetailsProps) => {
-  const movie = useMovieDetails(movieId);
+  const { movie, isLoading } = useMovieDetails(movieId);
 
+  if (isLoading) {
+    return (
+      <Loader title="Loader" />
+    );
+  }
   if (!movie) {
     return (
       <p>No movie found for this Id !</p>

@@ -9,11 +9,15 @@ describe('App', () => {
 
     await waitFor(() => {
       userEvent.click(screen.getByAltText('Red Dot'));
+    });
 
+    await waitFor(() => {
       expect(screen.getByText('Red Dot')).toBeInTheDocument();
 
       userEvent.click(screen.getByRole('img', { name: 'Back' }));
+    });
 
+    await waitFor(() => {
       expect(screen.getByRole('textbox', { name: /SearchBar/ })).toBeInTheDocument();
     });
   })

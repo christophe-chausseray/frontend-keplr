@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import Movie from '../model/movie';
 
-const useMovieDetails = (movieId: string): Movie | null => {
+const useMovieDetails = (movieId: string): { movie: Movie | null, isLoading: boolean } => {
   const [movie, setMovie] = useState<Movie| null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -10,12 +11,13 @@ const useMovieDetails = (movieId: string): Movie | null => {
       const movieFromResponse = await response.json();
 
       setMovie(movieFromResponse);
+      setIsLoading(false);
     };
 
     fetchMovieDetails();
   }, [movieId]);
 
-  return movie;
+  return { movie, isLoading };
 }
 
 export default useMovieDetails;
