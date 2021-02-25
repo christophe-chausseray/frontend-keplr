@@ -20,5 +20,5 @@ describe('App', () => {
     await waitFor(() => {
       expect(screen.getByRole('textbox', { name: /SearchBar/ })).toBeInTheDocument();
     });
-  })
+  });
 });

@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import DetailsPage from './screens/DetailsPage';
 import useTheme from './hooks/useTheme';
 import { lightTheme, darkTheme } from './themes';
-import ToggleThemeContext from './context/toggleThemeContext';
+import { ToggleThemeProvider } from './context/ToggleThemeContext';
 
 const GlobalStyle = createGlobalStyle`
  html {
@@ -39,7 +39,7 @@ function App() {
 
   return (
     <ThemeProvider theme={themeMode}>
-      <ToggleThemeContext.Provider value={{theme, toggleTheme}}>
+      <ToggleThemeProvider theme={theme} toggleTheme={toggleTheme}>
         <GlobalStyle />
         <Router>
           <Switch>
@@ -47,7 +47,7 @@ function App() {
             <Route path='/details/:movieId' component={DetailsPage} />
           </Switch>
         </Router>
-      </ToggleThemeContext.Provider>
+      </ToggleThemeProvider>
     </ThemeProvider>
   );
 }
