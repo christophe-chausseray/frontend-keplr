@@ -49,27 +49,31 @@ const ClearSearchButton = styled.button`
 `;
 
 type SearchBarProps = {
-  handleSearch: (searchValue: string) => void;
+  onSearch: (searchValue: string) => void;
+  onClearValue?: () => void;
 };
 
-const SearchBar = ({ handleSearch }: SearchBarProps) => {
+const SearchBar = ({ onSearch, onClearValue }: SearchBarProps) => {
   const [searchValue, setSearchValue] = React.useState('');
 
-  const makeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    handleSearch(event.currentTarget.value);
+  const doSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onSearch(event.currentTarget.value);
     setSearchValue(event.currentTarget.value);
   };
 
-  const clearSearch = () => {
-    handleSearch('');
+  const clearValue = () => {
+    if (onClearValue) {
+      onClearValue();
+    }
+
     setSearchValue('');
   }
 
   return (
     <SearchStyled>
-      <InputStyled aria-label="SearchBar" placeholder="Recherche un film" onChange={makeSearch} value={searchValue} />
+      <InputStyled aria-label="SearchBar" placeholder="Recherche un film" onChange={doSearch} value={searchValue} />
       {searchValue.length !== 0 && (
-        <ClearSearchButton aria-label="ClearSearchButton" onClick={clearSearch}>X</ClearSearchButton>
+        <ClearSearchButton aria-label="ClearSearchButton" onClick={clearValue}>X</ClearSearchButton>
       )}
     </SearchStyled>
   );

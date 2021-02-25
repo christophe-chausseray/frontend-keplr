@@ -59,17 +59,9 @@ const Title = styled.p`
 const MovieList = () => {
   const { movies, fetchMovies, searchMovie } = useMovieList();
 
-  const handleSearch = async (searchValue: string) => {
-    if (searchValue.length !== 0) {
-      searchMovie(searchValue);
-    } else {
-      fetchMovies();
-    }
-  };
-
   return (
     <>
-      <SearchBar handleSearch={handleSearch} />
+      <SearchBar onSearch={searchMovie} onClearValue={fetchMovies} />
       {movies ? (
         <List aria-label="MovieList">
           {movies.map((movie) => {
