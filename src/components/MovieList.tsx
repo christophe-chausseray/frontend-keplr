@@ -11,11 +11,35 @@ const List = styled.ul`
   margin: 0 25% 5% 25%;
   flex-flow: row wrap;
   height: auto;
+
+  @media (max-width: 450px) {
+    margin: 0 0 0 5%;
+  }
+
+  @media (min-width: 450px) and (max-width: 1024px) {
+    margin: 0 0 0 10%;
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 const Item = styled.li`
-  padding-right: 10px;
+  padding-right: 1%;
   position: relative;
+
+  @media (max-width: 450px) {
+    width: 45%;
+  }
+
+  @media (min-width: 450px) and (max-width: 1024px) {
+    width: 20%;
+  }
+`;
+
+const ImageStyled = styled.img`
+  width: 100%;
 `;
 
 const Title = styled.p`
@@ -76,7 +100,7 @@ const MovieItem = ({ movie }: { movie: Movie }) => {
   return (
     <Item aria-label={movie.title} onMouseEnter={showTitle} onMouseLeave={hideTitle}>
       <Link to={'/details/' + movie.id}>
-        <img src={'http://image.tmdb.org/t/p/w185' + movie.poster_path} alt={movie.title} />
+        <ImageStyled src={'http://image.tmdb.org/t/p/w185' + movie.poster_path} alt={movie.title} />
         {displayTitle && (
           <Title>
             {movie.title}
