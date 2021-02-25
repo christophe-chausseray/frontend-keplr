@@ -79,7 +79,7 @@ const ToggleTheme = () => {
 
   return (
     <ToggleWrapper>
-      <ToggleInput type="checkbox" id="switch" onClick={() => toggleTheme()} checked={isChecked} />
+      <ToggleInput type="checkbox" id="switch" onClick={() => toggleTheme()} checked={isChecked} readOnly />
       <ToggleLabel htmlFor="switch" />
     </ToggleWrapper>
   )

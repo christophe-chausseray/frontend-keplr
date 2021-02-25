@@ -6,11 +6,30 @@ import { CustomThemedProps } from './../themes';
 const Container = styled.div`
   display: flex;
   margin: 0 25% 5% 25%;
+
+  @media (max-width: 450px) {
+    margin: 0;
+    flex-flow: row wrap;
+  }
+
+  @media (min-width: 450px) and (max-width: 1024px) {
+    margin: 0 5%;
+  }
 `;
 
 const DescriptionContainer = styled.div`
   flex-grow: 1;
   color: ${({theme}: CustomThemedProps) => theme.textColor};
+
+  @media (max-width: 450px) {
+    margin: 0 5%;
+  }
+`;
+
+const ImageStyled = styled.img`
+  @media (max-width: 450px) {
+    margin: 0 20%;
+  }
 `;
 
 type MovieDetailsProps = {
@@ -35,7 +54,7 @@ const MovieDetails = ({ movieId }: MovieDetailsProps) => {
         <p>{movie.vote_average} / 10</p>
       </DescriptionContainer>
       {movie.poster_path && (
-        <img aria-label={movie.title} src={'http://image.tmdb.org/t/p/w185' + movie.poster_path} alt={movie.title} />
+        <ImageStyled aria-label={movie.title} src={'http://image.tmdb.org/t/p/w185' + movie.poster_path} alt={movie.title} />
       )}
     </Container>
   );

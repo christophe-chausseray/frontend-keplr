@@ -7,15 +7,30 @@ const SearchStyled = styled.div`
   border: 1px solid lightgray;
   padding: 10px;
   background-color: #fff;
+
+  @media (max-width: 450px) {
+    margin: 0 0 2% 5%;
+    width: 85%;
+    padding: 3%;
+  }
+
+  @media (min-width: 450px) and (max-width: 1024px) {
+    margin: 0 0 2% 10%;
+    width: 80%;
+    padding: 15px;
+  }
 `;
 
 const InputStyled = styled.input`
   width: 95%;
   border: none;
-  height: 100%;
 
   &:focus {
     outline: none;
+  }
+
+  @media (max-width: 1024px) {
+    width: 80%;
   }
 `;
 
@@ -24,32 +39,42 @@ const ClearSearchButton = styled.button`
   border: none;
   background-color: #fff;
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover {
     cursor: pointer;
   }
 `;
 
 type SearchBarProps = {
-  handleSearch: (searchValue: string) => void;
+  onSearch: (searchValue: string) => void;
+  onClearValue?: () => void;
 };
 
-const SearchBar = ({ handleSearch }: SearchBarProps) => {
+const SearchBar = ({ onSearch, onClearValue }: SearchBarProps) => {
   const [searchValue, setSearchValue] = React.useState('');
 
-  const makeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const doSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onSearch(event.currentTarget.value);
     setSearchValue(event.currentTarget.value);
-    handleSearch(searchValue);
   };
 
-  const clearSearch = () => {
+  const clearValue = () => {
+    if (onClearValue) {
+      onClearValue();
+    }
+
     setSearchValue('');
-    handleSearch(searchValue);
   }
 
   return (
     <SearchStyled>
-      <InputStyled aria-label="SearchBar" placeholder="Recherche un film" onChange={makeSearch} value={searchValue} />
-      <ClearSearchButton aria-label="ClearSearchButton" onClick={clearSearch}>X</ClearSearchButton>
+      <InputStyled aria-label="SearchBar" placeholder="Recherche un film" onChange={doSearch} value={searchValue} />
+      {searchValue.length !== 0 && (
+        <ClearSearchButton aria-label="ClearSearchButton" onClick={clearValue}>X</ClearSearchButton>
+      )}
     </SearchStyled>
   );
 };
