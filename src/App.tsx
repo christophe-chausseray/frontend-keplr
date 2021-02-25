@@ -1,11 +1,11 @@
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import Homepage from './screens/Homepage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import DetailsPage from './screens/DetailsPage';
+import ListPage from './screens/Movie/List/ListPage';
+import DetailsPage from './screens/Movie/Details/DetailsPage';
 import useTheme from './hooks/useTheme';
 import { lightTheme, darkTheme } from './themes';
-import { ToggleThemeProvider } from './context/ToggleThemeContext';
+import { ToggleThemeProvider } from './contexts/ToggleThemeContext';
 
 const GlobalStyle = createGlobalStyle`
  html {
@@ -43,7 +43,7 @@ function App() {
         <GlobalStyle />
         <Router>
           <Switch>
-            <Route exact path='/' component={Homepage} />
+            <Route exact path='/' component={ListPage} />
             <Route path='/details/:movieId' component={DetailsPage} />
           </Switch>
         </Router>

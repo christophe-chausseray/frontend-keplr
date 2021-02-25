@@ -1,19 +1,19 @@
 import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Homepage from './Homepage';
-import { renderWithRouter } from '../utilsTest';
+import ListPage from './ListPage';
+import { renderWithRouter } from '../../../utilsTest';
 
 
 describe('Homepage', () => {
   test('display the header on the homepage', () => {
-    renderWithRouter(<Homepage />);
+    renderWithRouter(<ListPage />);
 
     expect(screen.getByRole('heading', { name: /Movies/ })).toBeInTheDocument();
   });
 
   test('render a list of movies', async () => {
-    renderWithRouter(<Homepage />);
+    renderWithRouter(<ListPage />);
 
     await waitFor(() => {
       expect(screen.getByRole('list', { name: /MovieList/ })).toBeInTheDocument();
@@ -22,7 +22,7 @@ describe('Homepage', () => {
   });
 
   test('search on the list of movies', async () => {
-    renderWithRouter(<Homepage />);
+    renderWithRouter(<ListPage />);
 
     await waitFor(() => {
       expect(screen.getAllByRole('listitem').length).toEqual(3);
@@ -37,7 +37,7 @@ describe('Homepage', () => {
   });
 
   test('remove search value when clicking on a clear button', async () => {
-    renderWithRouter(<Homepage />);
+    renderWithRouter(<ListPage />);
 
     await waitFor(async () => {
       const searchInput = screen.getByRole('textbox', { name: /SearchBar/ });
@@ -57,7 +57,7 @@ describe('Homepage', () => {
   });
 
   test('display the movie title on the item hover', async () => {
-    renderWithRouter(<Homepage />);
+    renderWithRouter(<ListPage />);
 
     await waitFor(() => {
       userEvent.hover(screen.getByRole('listitem', { name: /Red Dot/ }));
@@ -67,7 +67,7 @@ describe('Homepage', () => {
   });
 
   test('display a loader when the list is loading', async () => {
-    renderWithRouter(<Homepage />);
+    renderWithRouter(<ListPage />);
 
     expect(screen.getByTitle('Loader')).toBeInTheDocument();
   });

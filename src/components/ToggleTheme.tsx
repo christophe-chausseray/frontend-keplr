@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useToggleThemeContext } from '../context/ToggleThemeContext';
+import { useToggleThemeContext } from '../contexts/ToggleThemeContext';
 
 const ToggleWrapper = styled.div`
   position: relative;

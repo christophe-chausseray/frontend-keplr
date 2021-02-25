@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import DetailsPage from './DetailsPage';
-import { renderWithRouter } from '../utilsTest';
+import { renderWithRouter } from '../../../utilsTest';
 
 describe('DetailsPage', () => {
   test('render the movie details', async () => {

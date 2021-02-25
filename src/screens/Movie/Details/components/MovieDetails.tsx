@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import useMovieDetails from './../hooks/useMovieDetails';
-import { CustomThemedProps } from './../themes';
-import Loader from './Loader';
+import useMovieDetails from '../hooks/useMovieDetails';
+import { CustomThemedProps } from '../../../../themes';
+import Loader from '../../../../components/Loader';
 
 const Container = styled.div`
   display: flex;

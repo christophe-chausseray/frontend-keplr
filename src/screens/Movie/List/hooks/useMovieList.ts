@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import Movie from '../model/movie';
+import Movie from '../../../../models/movie';
 
 const useMovieList = (): { movies: Movie[]|null, isLoading: boolean, fetchMovies: () => void, searchMovie: (searchValue: string) => void } => {
   const [isMounted, setIsMounted] = useState(true);
