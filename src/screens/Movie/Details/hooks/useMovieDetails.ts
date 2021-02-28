@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import Movie from '../../../../models/movie';
 
-const useMovieDetails = (movieId: string): { movie: Movie | null, isLoading: boolean } => {
-  const [movie, setMovie] = useState<Movie| null>(null);
+const useMovieDetails = (movieId: string): { movie: Movie | null; isLoading: boolean } => {
+  const [movie, setMovie] = useState<Movie | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=5dcff845c097b0973ebee6ea9eb9eaef`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}`
+      );
       const movieFromResponse = await response.json();
 
       if (movieFromResponse.success !== false) {
@@ -21,6 +23,6 @@ const useMovieDetails = (movieId: string): { movie: Movie | null, isLoading: boo
   }, [movieId]);
 
   return { movie, isLoading };
-}
+};
 
 export default useMovieDetails;
