@@ -44,6 +44,7 @@ type MovieDetailsProps = {
 
 const MovieDetails = ({ movieId }: MovieDetailsProps) => {
   const { movie, isLoading } = useMovieDetails(movieId);
+  const imageUrl = (process.env.REACT_APP_IMAGE_BASE_URL && movie && movie.poster_path) ? process.env.REACT_APP_IMAGE_BASE_URL + movie.poster_path : '';
 
   if (isLoading) {
     return (
@@ -66,7 +67,7 @@ const MovieDetails = ({ movieId }: MovieDetailsProps) => {
         <p>{movie.vote_average} / 10</p>
       </DescriptionContainer>
       {movie.poster_path && (
-        <ImageStyled aria-label={movie.title} src={'http://image.tmdb.org/t/p/w185' + movie.poster_path} alt={movie.title} />
+        <ImageStyled aria-label={movie.title} src={imageUrl} alt={movie.title} />
       )}
     </Container>
   );

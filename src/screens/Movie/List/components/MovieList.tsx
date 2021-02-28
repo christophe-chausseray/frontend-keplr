@@ -92,6 +92,7 @@ const MovieList = () => {
 
 const MovieItem = ({ movie }: { movie: Movie }) => {
   const [displayTitle, setDisplayTitle] = React.useState(false);
+  const imageUrl = (process.env.REACT_APP_IMAGE_BASE_URL && movie.poster_path) ? process.env.REACT_APP_IMAGE_BASE_URL + movie.poster_path : '';
 
   const showTitle = () => {
     setDisplayTitle(true);
@@ -104,7 +105,7 @@ const MovieItem = ({ movie }: { movie: Movie }) => {
   return (
     <Item aria-label={movie.title} onMouseEnter={showTitle} onMouseLeave={hideTitle}>
       <Link to={'/details/' + movie.id}>
-        <ImageStyled src={'http://image.tmdb.org/t/p/w185' + movie.poster_path} alt={movie.title} />
+        <ImageStyled src={imageUrl} alt={movie.title} />
         {displayTitle && (
           <Title>
             {movie.title}
